@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+li, button {
+    cursor: pointer;
+}
+
+.todo_container {
+    width: 50%;
+    min-height: 25vh;
+    background-color:saddlebrown;
+    position: absolute;
+    top: 25vh;
+    left: 25vw;
+    position: relative;
+    border-radius: 10px;
+    padding: 1.5em;
+    box-shadow: 0 0 10px 5px rgba(242, 171, 6, 0.897);
+}
+
+.title {
+    margin-left: 230px;
+    display: block;
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 40px;
+}
+
+.input_div {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input {
+    width: 90%;
+    padding: 5px;
+    font-size: 1.5rem;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.708);
+}
+
+.add {
+    font-size: 1.5rem;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(234, 42, 67);
+    color: white;
+}
+
+.add:hover {
+    background-color: rgba(4, 127, 39, 0.759);
+}
+
+.caution {
+    color: red;
+    display: none;
+}
+
+.task_list {
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+li:nth-child(odd) {
+    background-color: rgba(237, 159, 184, 0.79);
+}
+
+.item {
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    background-color: rgba(227, 187, 126, 0.911);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.item:hover {
+    background-color:rgba(211, 230, 115, 0.705);
+}
+
+.delete {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(245, 6, 6, 0.853);
+}
+
+.delete:hover {
+    background-color: rgb(251, 9, 9);
+    font-weight: bold;
+}
