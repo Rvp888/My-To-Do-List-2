@@ -92,7 +92,7 @@ li:nth-child(odd) {
     background-color:rgba(211, 230, 115, 0.705);
 }
 
-.delete {
+#delete {
     border: none;
     padding: 5px;
     border-radius: 5px;

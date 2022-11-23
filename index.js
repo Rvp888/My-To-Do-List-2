@@ -3,15 +3,15 @@ const add = document.querySelector('.add');
 const taskList = document.querySelector('.task_list')
 const caution = document.querySelector('.caution');
 
+let todoItems = JSON.parse(localStorage.getItem("todoList"));
+if (!todoItems) todoItems = [];
+renderTodos(todoItems);
 
-let todoItems = [];
 
 add.addEventListener("click",() => {
     updateList();
 });
 
-todoItems = JSON.parse(localStorage.getItem("todo"));
-renderTodos(todoItems);
 
 function updateList() {
     if(input.value === ""){
@@ -21,10 +21,11 @@ function updateList() {
     
     caution.style.display = 'none';
 
-    const task = input.value;
+    let task = input.value;
+    let id = Date.now();
 
-    todoItems.push({task});
-    localStorage.setItem("todo", JSON.stringify(todoItems));
+    todoItems.push({task,id});
+    localStorage.setItem("todoList", JSON.stringify(todoItems));
     renderTodos(todoItems);
 
     input.value = "";
@@ -34,47 +35,70 @@ function updateList() {
 
 function renderTodos(todos) {
     taskList.innerHTML = "";
+    if (!todos) return;
     todos.map(
         (todo) => {
-            taskList.innerHTML += `<li class="item">${todo.task}<button class="delete">Delete</button></li>`
+            taskList.innerHTML += `<li id="${todo.id}" class="item">${todo.task}<button id="delete">Delete</button></li>`;
         }
     );
-}
+};
+
 
 taskList.addEventListener('click',(event) => {
-    console.log(event);
-    if(event.target.classList.contains('delete')){
-        event.target.parentElement.remove();
+    console.log(event)
+    if(event.target.id === "delete"){
+        let item = event.target.parentElement;
+        
+        todoItems.forEach((todo) => {
+            if(todo.id == Number(item.id)){
+                todoItems.splice(todo, 1);
+                
+                renderTodos(todoItems);
+                localStorage.setItem("todoList", JSON.stringify(todoItems));
+                return;
+            }
+        })
+        
     }
+        
 })
 
 
 
-/*
-
-function updateList_1() {
-    if(input.value == ""){
-        caution.style.display = 'inline-block';
-    }
-    else{
-        caution.style.display = 'none';
-
-        const item = document.createElement('li');
-        item.classList.add('item');
-        item.innerText = input.value;
-
-        const deleteBtn = document.createElement('button');
-        deleteBtn.classList.add('delete');
-        deleteBtn.innerText = 'Delete';
-
-        item.appendChild(deleteBtn);
-        taskList.appendChild(item);
-
-        input.value = "";
-
-    }
-}
 
 
 
-*/
+
+
+
+
+
+
+
+
+// function updateList() {
+//     if(input.value == ""){
+//         caution.style.display = 'inline-block';
+//     }
+//     else{
+//         caution.style.display = 'none';
+
+//         const item = document.createElement('li');
+//         item.classList.add('item');
+//         item.innerText = input.value;
+
+//         const deleteBtn = document.createElement('button');
+//         deleteBtn.classList.add('delete');
+//         deleteBtn.innerText = 'Delete';
+
+//         item.appendChild(deleteBtn);
+//         taskList.appendChild(item);
+
+//         input.value = "";
+
+//     }
+// }
+
+
+
+
